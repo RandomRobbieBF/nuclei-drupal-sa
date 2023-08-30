@@ -6,5 +6,5 @@ PR if you want stuff to change.
 How to use
 ---
 ```
-nuclei -t templates/ --target https://www.example.com
+nuclei -t ./nuclei-drupal-sa/templates/ --target https://www.example.com
 ```
