@@ -1,17 +1,17 @@
 
-id: drupal_module-entity_delete_log-access-bypass
+id: drupal_module-basic_auth-access-bypass
 info:
-  name: drupal_module-entity_delete_log-access-bypass
+  name: drupal_module-basic_auth-access-bypass
   author: me
   severity: medium
-  description: "The Entity Delete Log module tracks the deletion of configured entity types, such as node or comments. It does not add sufficient permission to the log report page, allowing an attacker to view information from deleted entities."
+  description: "The module provides a possibility to restrict access to specific paths using basic HTTP authentication, in addition to standard Drupal access checks.  In some cases, the module removes existing access checks from some paths, resulting in an access bypass vulnerability."
   reference:
-    - https://www.drupal.org/sa-contrib-2024-007
+    - https://www.drupal.org/sa-contrib-2024-057
   metadata:
-    security-risk: "Moderately critical 12 ∕ 25 AC:Basic/A:None/CI:Some/II:None/E:Theoretical/TD:Default"
+    security-risk: "Critical 16 ∕ 25 AC:None/A:None/CI:Some/II:Some/E:Theoretical/TD:Uncommon"
     vulnerability: "access-bypass"
-    fofa-query: "/sites/all/modules/entity_delete_log/"
-    google-query: "inurl:'/sites/all/modules/entity_delete_log/"
+    fofa-query: "/sites/all/modules/basic_auth/"
+    google-query: "inurl:'/sites/all/modules/basic_auth/"
     impact: medium
     type: indicator
     created_at: '2025-01-09'
@@ -22,7 +22,7 @@ http:
     redirects: true
     max-redirects: 3
     path:
-      - "{{BaseURL}}/sites/all/modules/entity_delete_log/entity_delete_log.info"
+      - "{{BaseURL}}/sites/all/modules/basic_auth/basic_auth.info"
 
     matchers-condition: and
     matchers:
@@ -39,7 +39,7 @@ http:
         
       - type: word
         words:
-          - 'entity_delete_log'
+          - 'basic_auth'
         part: body
         condition: and
 
@@ -53,4 +53,4 @@ http:
 
       - type: dsl
         dsl:
-         - compare_versions(version, '<= 1.1.1')
+         - compare_versions(version, '9.x-99.99')
